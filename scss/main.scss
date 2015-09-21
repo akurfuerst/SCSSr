@@ -17,13 +17,8 @@ $mq-desktop: 1210;
 
 
 //  Mixins
-@import 'core/mixins/_extends';
-@import 'core/mixins/_background';
-@import 'core/mixins/_color';
-@import 'core/mixins/_fonts';
-@import 'core/mixins/_media-queries';
-@import 'core/mixins/_position';
-@import 'core/mixins/_transitions';
+@import 'core/mixins/init.scss';
+
 
 
 /*
