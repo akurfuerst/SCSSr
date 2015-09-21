@@ -1,0 +1,92 @@
+//  ================================================
+//  Mixins
+//  ================================================
+
+--- erklärung schreiben
+// types: string, property, list, color
+
+--- schreibweise n für no, y für yes, statt null (pos mixin)
+--- includes mit parametern, wie? sinnvoll?
+    @include scut-list-custom {
+        color: $eg-light;
+    }
+http://davidtheclark.github.io/scut/list-custom.html
+
+
+--- http://colindresj.github.io/saffron/ animationen?
+
+//  ================================================
+//  Mixin: Position
+//  ================================================
+
+
+//  ------------------------------------------------
+//  Usage:
+//
+//      @include position(0 0 0 0, fixed);
+//
+//      center element:
+//      @include position(center);
+//
+//  ------------------------------------------------
+
+//  ------------------------------------------------
+//  Parameter:
+//
+//  $coordinates:
+//
+
+
+
+
+
+//`.icon-element([icon-name], [icon-size]);`
+
+// `@param: {String} name: The keyframe animation name`<br/>
+// `@param: {String} roules: the animation frames`
+//{Number}
+/*
+Buttons
+===================================================================
+######Basic button layout
+
+Creates a basic button. Button type classes can be added by using multiple classes on the `.btn` element.
+
+Adding the class `is--disabled` changes the element to a disabled button.
+```
+<button class="btn">
+    Basic button
+</button>
+
+<button class="btn is--disabled">
+    Disabled button
+</button>
+```
+*/
+
+
+
+// ------------------------------------------------
+// Mixins
+
+
+
+
+// Longforms
+
+
+
+@mixin circle($value, $display: inline-block) {
+    display: $display;
+    width: $value;
+    height: $value;
+    border-radius: 100%;
+}
+
+
+@mixin calc($value) {
+    @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+        width: #{$prefix}calc(#{$value});
+    }
+}
+

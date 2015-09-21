@@ -1,0 +1,105 @@
+//  ================================================
+//  Position
+//  ================================================
+
+
+//  ------------------------------------------------
+//
+//  mixin: position
+//
+//  Parameter:
+//
+//  @param: {list} $coordinates: background-color
+//  @param: {property} $position: position styles
+//  @param: {value} $z-index: try z-index variables @variables.scss not values for better structure
+//
+//
+//  ------------------------------------------------
+//
+//
+//  Examples:
+//
+//  @include position(0 0 0 0, fixed); // fixed position, full height and width
+//  @include position(center); // vertical and horizontal position
+//  @include position(center right); // horizontal position, but on the right (also works with left)
+//  @include position(center right 10px); // horizontal position, but on the right with 10px space (right: 10px)
+//
+//
+//  ------------------------------------------------
+
+
+@mixin position ($coordinates: n n n n, $position: absolute, $z-index: null) {
+
+    position: $position;
+
+    @if ($coordinates == "center") {
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-filter: blur(0px); // for blurry text at odd px-width (e.g. width: 263px) webkit only
+
+    } @else if (type-of($coordinates) == list) {
+
+        @if (nth($coordinates, 1) == "center") {
+
+            @if (nth($coordinates, 2) == "top" or nth($coordinates, 2) == "bottom") {
+                // horizontal centering
+                left: 50%;
+                transform: translate(-50%, 0);
+            } @else {
+                // vertical centering
+                top: 50%;
+                transform: translate(0, -50%);
+            }
+
+            @if (length($coordinates) == 3) {
+                #{nth($coordinates, 2)}: nth($coordinates, 3);
+            } @else {
+                #{nth($coordinates, 2)}: 0;
+            }
+            -webkit-filter: blur(0px); // for blurry text at odd px-width (e.g. width: 263px) webkit only
+
+        } @else {
+
+            $top: nth($coordinates, 1);
+            $right: nth($coordinates, 2);
+            $bottom: nth($coordinates, 3);
+            $left: nth($coordinates, 4);
+
+            @if ($top and $top == auto) or (type-of($top) == number) {
+                top: $top;
+            }
+
+            @if ($right and $right == auto) or (type-of($right) == number) {
+                right: $right;
+            }
+
+            @if ($bottom and $bottom == auto) or (type-of($bottom) == number) {
+                bottom: $bottom;
+            }
+
+            @if ($left and $left == auto) or (type-of($left) == number) {
+                left: $left;
+            }
+
+        }
+    }
+
+    @if ($z-index != null) {
+
+        z-index: $z-index;
+
+    }
+}
+
+
+//  ------------------------------------------------
+//  Shortcut
+//  ------------------------------------------------
+
+@mixin pos($coordinates: null null null null, $pos: absolute, $z: null) {
+
+    @include position($coordinates, $pos, $z);
+
+}

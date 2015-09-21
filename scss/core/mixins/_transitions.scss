@@ -1,0 +1,83 @@
+//  ================================================
+//  Mixin: fonts
+//  ================================================
+
+
+//  ------------------------------------------------
+//
+//  Parameter:
+//
+//  @param: {property} $property: css property or all
+//  @param: {value} $duration: time in s
+//  @param: {value} $delay: time in s
+//  @param: {property} $function: ease properties, see http://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp
+//
+//
+//  ------------------------------------------------
+//
+//
+//  Examples:
+//
+//  @include tn(); // compiles to transition: all .3s 0s linear
+//  @include tn((opacity, visibility), (.5s, 0s), (0, .5s), (ease-out, linear)) // Multiple transition
+//  @include tn(opacity, .5s, 0, linear); // simple transition
+//
+//
+//  ------------------------------------------------
+
+
+@mixin transition($property: all, $duration: .3s, $delay: 0s, $function: linear){
+
+    @if (type-of($property) == list) {
+
+        $output: null;
+
+        @each $current-property in $property {
+
+            $i: index($property, $current-property);
+            $current-duration: null;
+            $current-delay: null;
+            $current-function: null;
+
+            @if (type-of($duration) == list) {
+                $current-duration: nth($duration, $i);
+            } @else {
+                $current-duration: $duration;
+            }
+
+            @if (type-of($delay) == list) {
+                $current-delay: nth($delay, $i);
+            } @else {
+                $current-delay: $delay;
+            }
+
+            @if (type-of($function) == list) {
+                $current-function: nth($function, $i);
+            } @else {
+                $current-function: $function;
+            }
+            @if ($i == 1) {
+                $output: $current-property $current-duration $current-delay $current-function;
+            } @else {
+                $output: $output, $current-property $current-duration $current-delay $current-function;
+            }
+
+        }
+        transition: $output;
+
+    } @else {
+
+        transition: $property $duration $delay $function;
+
+    }
+}
+
+//  ------------------------------------------------
+//  Shortcut
+//  ------------------------------------------------
+
+@mixin tn($property: all, $duration: 0.3s, $delay: 0s, $function: linear){
+
+    @include transition($property: all, $duration: 0.3s, $delay: 0s, $function: linear);
+
+}

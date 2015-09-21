@@ -1,0 +1,49 @@
+//  ================================================
+//  Mixin: background
+//  ================================================
+
+
+//  ------------------------------------------------
+//
+//  Parameter:
+//
+//  @param: {string} $src: image file name (not the path)
+//  @param: {property} $repeat: background-repeat
+//  @param: {property/list} $position: background-position
+//  @param: {color} $color: background-color
+//  @param: {property} $size: background-size
+//
+//
+//  ------------------------------------------------
+//
+//
+//  Examples:
+//
+//  @include bg('image.jpg'); // only image, no-repeat
+//  @include bg('image.jpg', $repeat: repeat-x); // only image, with x-repeat
+//
+//
+//  ------------------------------------------------
+
+@mixin background( $src, $repeat: no-repeat, $position: null, $color: null, $size: null ) {
+
+    background: {
+        @if $color != null { color: $color; }
+        image: url(../img/#{$src});
+        @if $pos != null { position: $pos; }
+        @if $size != null { size: $size; }
+        repeat: $repeat;
+    }
+
+}
+
+
+//  ------------------------------------------------
+//  Shortcut
+//  ------------------------------------------------
+
+@mixin bg($src, $repeat: no-repeat, $pos: null, $col: null, $size: null) {
+
+    @include background($src, $repeat, $position, $col, $size);
+
+}

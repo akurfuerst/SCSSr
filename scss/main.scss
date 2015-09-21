@@ -1,0 +1,81 @@
+//  ================================================
+//  Main
+//  ================================================
+
+//  ------------------------------------------------
+//  Setup
+//  ------------------------------------------------
+
+$mq-mini: 480;
+$mq-mobile: 700;
+$mq-tablet: 900;
+$mq-desktop: 1210;
+
+//  ------------------------------------------------
+//  Imports
+//  ------------------------------------------------
+
+
+//  Mixins
+@import 'core/mixins/_extends';
+@import 'core/mixins/_background';
+@import 'core/mixins/_color';
+@import 'core/mixins/_fonts';
+@import 'core/mixins/_media-queries';
+@import 'core/mixins/_position';
+@import 'core/mixins/_transitions';
+
+
+/*
+//  ------------------------------------------------
+//  Config
+//  ------------------------------------------------
+
+// grid needed?
+// @ grid/_grid.sccs
+$has-grid: true;
+
+// visible/hidden classes for responsive steps
+// @ general/_unique.scss
+$has-visible-hidden: true;
+
+// overlay needed?
+// @ general/_general.scss
+$has-overlay: true;
+
+// Icons Needed??
+// @ general/_icons.scss
+$has-icons: true;
+
+
+//  ------------------------------------------------
+//  Imports
+//  ------------------------------------------------
+
+//  Base Stuff
+@import 'base/_normalize';
+@import 'base/_variables';
+@import 'base/_mixins';
+
+
+// General Styles
+@import 'general/_general';
+@import 'general/_unique';
+@import 'general/_typography';
+@import 'general/_icons';
+
+@import 'general/sprite';
+
+
+// Loved Grid
+@import 'grid/_grid';
+
+@import 'grid/_flex';
+
+
+// Page Styles
+@import 'page/_header';
+@import 'page/_pages';
+@import 'page/_footer';
+*/
+

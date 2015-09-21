@@ -1,0 +1,31 @@
+//  ================================================
+//  Colors
+//  ================================================
+
+
+//  ------------------------------------------------
+//
+//  mixin: rgba
+//
+//  Parameter:
+//
+//  @param: {property} $color: background-color
+//  @param: {value} $style: 0 - 1
+//
+//
+//  ------------------------------------------------
+//
+//
+//  Examples:
+//
+//  @include rgba(#000, .5); // black with 50% transparenz
+//
+//
+//  ------------------------------------------------
+
+@mixin rgba($color, $opacity) {
+
+    background-color: $color;
+    background-color: rgba($color, $opacity);
+
+}

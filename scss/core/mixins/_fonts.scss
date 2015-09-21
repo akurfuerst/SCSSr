@@ -1,0 +1,40 @@
+//  ================================================
+//  Mixin: fonts
+//  ================================================
+
+
+//  ------------------------------------------------
+//
+//  Parameter:
+//
+//  @param: {string} $family: font-family
+//  @param: {string} $file: file name without extension
+//  @param: {property} $weight: font-weight
+//  @param: {property} $style: font-style
+//
+//
+//  ------------------------------------------------
+//
+//
+//  Examples:
+//
+//  @include font-face(Avenir, 'avenir'); // Avenir with font-weight: normal, font-style: normal
+//  @include font-face(Avenir, 'avenir-light', $weight: 100); // Avenir with font-weight: light, font-style: normal
+//  @include font-face(Avenir, 'avenir-light-italic', $weight: 100, $style: italic); // Avenir with font-weight: light, font-style: italic
+//
+//
+//  ------------------------------------------------
+
+@mixin font-face($family, $file, $weight: normal, $style: normal) {
+
+    @font-face {
+        font-family: $family;
+        src: url('webfonts/#{$file}.eot');
+        src: url('webfonts/#{$file}.eot?#iefix') format('embedded-opentype'),
+             url('webfonts/#{$file}.woff') format('woff'),
+             url('webfonts/#{$file}.ttf') format('truetype');
+        font-weight: $weight;
+        font-style: $style;
+    }
+
+}

@@ -1,0 +1,115 @@
+//  ================================================
+//  Media Queries
+//  ================================================
+
+
+//  ------------------------------------------------
+//
+//  mixin: mq
+//
+//  Parameter:
+//
+//  @param: {value} $min: min-width
+//  @param: {value} $max: max-width
+//
+//
+//  ------------------------------------------------
+//
+//
+//  Examples:
+//
+//  @include mq(320, 640); // mq between 320px and 640px
+//  @include mq(640); // mq min-width 640px
+//  @include mq($min: 640); // also mq min-width 640px
+//  @include mq($max: 640); // mq max-width 640px
+//
+//
+//  ------------------------------------------------
+
+
+@mixin mq($min: n, $max: n) {
+
+    @if ((type-of($min) == number) and (type-of($max) == number)) {
+        $query: "(min-width: #{$min}px) and (max-width: #{$max}px)";
+    } @elseif (type-of($min) == number) {
+        $query: "(min-width: #{$min}px)";
+    } @elseif (type-of($max) == number) {
+        $query: "(max-width: #{$max}px)"
+    }
+
+    @media only screen and #{$query} {
+        @content;
+    }
+
+}
+
+
+//  ------------------------------------------------
+//  Media Queries Helpers with Shortcodes
+//  ------------------------------------------------
+
+// @include mini { // css }
+@mixin mini {
+
+    @include mq($max: $mq-mini) {
+        @content;
+    }
+
+}
+
+@mixin gt-mini {
+
+    @include mq($min: $mq-mini+1) {
+        @content;
+    }
+
+}
+
+
+@mixin mobile {
+
+    @include mq($max: $mq-mobile) {
+        @content;
+    }
+
+}
+
+@mixin gt-mobile {
+
+    @include mq($min: $mq-mobile+1) {
+        @content;
+    }
+
+}
+
+@mixin tablet {
+
+    @include mq($max: $mq-tablet) {
+        @content;
+    }
+
+}
+
+@mixin gt-tablet {
+
+    @include mq($min: $mq-tablet+1) {
+        @content;
+    }
+
+}
+
+@mixin desktop {
+
+    @include mq($max: $mq-desktop) {
+        @content;
+    }
+
+}
+
+@mixin gt-desktop {
+
+    @include mq($min: $mq-desktop+1) {
+        @content;
+    }
+
+}
