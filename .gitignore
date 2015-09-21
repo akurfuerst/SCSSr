@@ -4,3 +4,4 @@ node_modules/**/*
 .sass-cache/
 /css/*.css
 /css/*.map
+/scss/_old
