@@ -57,6 +57,7 @@
 
 }
 
+// gt = greater than
 @mixin gt-mini {
 
     @include mq($min: $mq-mini+1) {

@@ -1,0 +1,76 @@
+//  ================================================
+//  Helper: container
+//  ================================================
+
+
+//  ------------------------------------------------
+//
+//  configure container size setup.scss
+//
+//  Usage:
+//
+//  setup.scss:
+//
+//  $container-width: 94%;
+//  $container-sizes: (
+//      default: 1200,
+//      small: 960,
+//      wide: 1600
+//  );
+//
+//  css output:
+//
+//  .container, [class^="container--"], [class*=" container--"] {
+//      width: 94%;
+//      max-width: 1200px;
+//  }
+//
+//  .container--small {
+//      max-width: 960px;
+//  }
+//
+//  .container--wide {
+//      max-width: 1600px;
+//  }
+//
+//  ------------------------------------------------
+
+.container, [class^="container--"], [class*=" container--"] {
+    @extend %is--center;
+    width: map-get($container-width, "desktop");
+
+    // get default map
+    $default: map-get($container-sizes, "default");
+    max-width: map-get($default, "desktop") + px;
+
+    @include tablet {
+        width: map-get($container-width, "tablet");
+        max-width: map-get($default, "tablet") + px;
+    }
+
+    @include mobile {
+        width: map-get($container-width, "mobile");
+        max-width: map-get($default, "mobile") + px;
+    }
+}
+
+.container--{
+
+    @each $size, $width in $container-sizes {
+        // .container--default size isn't needed, cause .container is default
+        @if ($size != "default") {
+            &#{$size} {
+                max-width: map-get($width, "desktop") + px;
+
+                @include tablet {
+                    max-width: map-get($width, "tablet") + px;
+                }
+
+                @include mobile {
+                    max-width: map-get($width, "mobile") + px;
+                }
+            }
+        }
+    }
+
+}

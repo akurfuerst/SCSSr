@@ -2,6 +2,7 @@ npm-debug.log
 .DS_Store
 node_modules/**/*
 .sass-cache/
+scss struktur
 /css/*.css
 /css/*.map
 /scss/_old

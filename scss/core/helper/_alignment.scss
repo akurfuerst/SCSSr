@@ -1,0 +1,106 @@
+//  ================================================
+//  Helper: alignment
+//  ================================================
+
+
+//  ------------------------------------------------
+//
+//  extends for alignment
+//
+//  Usage:
+//
+//  @extend %is--left // element floats left
+//  @extend %is--center // center element
+//  @extend %is--right // element floats right
+//
+//  @extend %align--left // align left
+//  @extend %align--center // align center
+//  @extend %align--right // align right
+//
+//  ------------------------------------------------
+
+%is--{
+
+    &center {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    &left {
+        display: inline;
+        float: left;
+    }
+
+    &right {
+        display: inline;
+        float: right;
+    }
+
+}
+
+%align--{
+
+    &left {
+        text-align: left;
+    }
+
+    &right {
+        text-align: right;
+    }
+
+    &center {
+        text-align: center;
+    }
+
+}
+
+
+//  ------------------------------------------------
+//
+//  helper classes
+//
+//  class="is--center" // element floats left
+//  class="is--right" // center element
+//  class="is--left" // element floats right
+//
+//  class="align--center" // center element
+//  class="align--right" // element positions right
+//  class="align--left" // element positions left
+//
+//  ------------------------------------------------
+
+@if ($has-alignment) {
+
+    .is--{
+
+        &left {
+            @extend %is--left;
+        }
+
+        &center {
+            @extend %is--center;
+        }
+
+        &right {
+            @extend %is--right;
+        }
+
+    }
+
+    .align--{
+
+        &left {
+            @extend %align--left;
+        }
+
+        &center {
+            @extend %align--center;
+        }
+
+        &right {
+            @extend %align--right;
+        }
+
+    }
+}
