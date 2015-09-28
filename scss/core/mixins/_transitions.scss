@@ -18,7 +18,7 @@
 //
 //  Examples:
 //
-//  @include tn(); // compiles to transition: all .3s 0s linear
+//  @include transition(); or @include tn(); // compiles to transition: all .3s 0s linear
 //  @include tn((opacity, visibility), (.5s, 0s), (0, .5s), (ease-out, linear)) // Multiple transition
 //  @include tn(opacity, .5s, 0, linear); // simple transition
 //

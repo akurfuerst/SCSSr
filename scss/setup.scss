@@ -33,16 +33,16 @@ $container-sizes: (
     default: (
         desktop: 1200,
         tablet: 1000,
-        mobile: 500
+        mobile: 600
     ),
     small: (
-        desktop: 1000,
-        tablet: 1000,
-        mobile: 500
+        desktop: 850,
+        //tablet: 600,
+        //mobile: 500
     ),
     wide: (
-        desktop: 200,
-        tablet: 1000,
-        mobile: 500
+        desktop: 1600,
+        //tablet: 1000,
+        //mobile: 600
     )
 );

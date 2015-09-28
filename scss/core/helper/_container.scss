@@ -10,28 +10,66 @@
 //  Usage:
 //
 //  setup.scss:
+//  --------------------
 //
-//  $container-width: 94%;
-//  $container-sizes: (
-//      default: 1200,
-//      small: 960,
-//      wide: 1600
+//  $container-width: (
+//      desktop: 94%,
+//      tablet: 96%,
+//      mobile: 100%
 //  );
 //
+//  $container-sizes: (
+//      default: (
+//          desktop: 1200,
+//          tablet: 1000,
+//          mobile: 600
+//      ),
+//      small: (
+//          desktop: 850,
+//      ),
+//      wide: (
+//          desktop: 1600,
+//     )
+//  );
+//
+//
+//  html output:
+//  --------------------
+//
+//  <div class="container">default container</div>
+//  <div class="container--small">small container</div>
+//  <div class="container--wide">wide container</div>
+//
+//
 //  css output:
+//  --------------------
 //
 //  .container, [class^="container--"], [class*=" container--"] {
 //      width: 94%;
 //      max-width: 1200px;
 //  }
 //
-//  .container--small {
-//      max-width: 960px;
+//  @media only screen and (max-width: 900px) {
+//      .container, [class^="container--"], [class*=" container--"] {
+//          width: 96%;
+//          max-width: 1000px;
+//      }
 //  }
 //
-//  .container--wide {
-//      max-width: 1600px;
+//  @media only screen and (max-width: 700px) {
+//      .container, [class^="container--"], [class*=" container--"] {
+//          width: 100%;
+//          max-width: 600px;
+//      }
 //  }
+//
+// .container--small {
+//     max-width: 850px;
+// }
+//
+// .container--wide {
+//     max-width: 1600px;
+// }
 //
 //  ------------------------------------------------
 
@@ -43,14 +81,25 @@
     $default: map-get($container-sizes, "default");
     max-width: map-get($default, "desktop") + px;
 
+
     @include tablet {
-        width: map-get($container-width, "tablet");
-        max-width: map-get($default, "tablet") + px;
+        @if (map-get($container-width, "tablet")) {
+            width: map-get($container-width, "tablet");
+        }
+
+        @if (map-get($default, "tablet")) {
+            max-width: map-get($default, "tablet") + px;
+        }
     }
 
     @include mobile {
-        width: map-get($container-width, "mobile");
-        max-width: map-get($default, "mobile") + px;
+        @if (map-get($container-width, "mobile")) {
+            width: map-get($container-width, "mobile");
+        }
+
+        @if (map-get($default, "mobile")) {
+            max-width: map-get($default, "mobile") + px;
+        }
     }
 }
 
@@ -62,12 +111,16 @@
             &#{$size} {
                 max-width: map-get($width, "desktop") + px;
 
-                @include tablet {
-                    max-width: map-get($width, "tablet") + px;
+                @if (map-get($width, "tablet")) {
+                    @include tablet {
+                        max-width: map-get($width, "tablet") + px;
+                    }
                 }
 
-                @include mobile {
-                    max-width: map-get($width, "mobile") + px;
+                @if (map-get($width, "mobile")) {
+                    @include mobile {
+                        max-width: map-get($width, "mobile") + px;
+                    }
                 }
             }
         }
