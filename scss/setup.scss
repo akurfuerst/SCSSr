@@ -8,8 +8,12 @@
 //  ------------------------------------------------
 
 // alignment classes needed? (e.g. is--left, is--center)
+// @ core/helper/_alignment.scss
 $has-alignment: true;
 
+// grid needed? (.grid)
+// @ page/base/_grid.scss
+$has-grid: true;
 
 //  ------------------------------------------------
 //  Setup
