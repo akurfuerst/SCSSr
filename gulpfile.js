@@ -9,14 +9,12 @@ var notify = require("gulp-notify")
 var autoprefixer = require('autoprefixer-core')
 var combineMq = require('gulp-combine-mq')
 var nodeSass = require('node-sass');
-var chalk = require('chalk');
 var fs = require('fs')
 var chokidar = require('chokidar')
 var postcss   = require('postcss');
 var processor = postcss([require('autoprefixer-core')({ browsers: ['last 6 versions', 'ie 9', 'android 4'] })]);
 var iconfont = require('gulp-iconfont');
 var iconfontCss = require('gulp-iconfont-css');
-var sprite = require('gulp-svg-sprite');
 
 var iconfont = require('gulp-iconfont');
 
@@ -32,54 +30,17 @@ gulp.task('default', [
     'sass'
 ]);
 
+
 gulp.task('font', [
     'icon-font'
 ]);
 
-gulp.task('sprite', [
-    'image-sprite'
-]);
 
 //  Production
 gulp.task('production', [
     'production-sass',
     //'combine-media-queries' // nicht ausgereift
 ]);
-
-
-//  ------------------------------------------------
-//  Sprite
-//  ------------------------------------------------
-
-gulp.task('image-sprite', function () {
-    config = {
-        dest: "./img",
-        shape: {
-            spacing: {
-                padding: 20
-            },
-            dest: "./img/icons-super"
-        },
-        mode: {
-            view: {
-                sprite: "../../img/sprite.svg",
-                dest: "scss/general/",
-                layout: 'vertical',
-                bust: false, // no hashtags in filename
-                render: {
-                    scss: true  // Activate SCSS output (with default options)
-                }
-            },
-
-        }
-    };
-
-
-    gulp.src('img/sprite/*.svg')
-        .pipe(sprite(config))
-        .pipe(gulp.dest('.'));
-});
-
 
 //  ------------------------------------------------
 //  Icon-Font
@@ -121,6 +82,8 @@ gulp.task('sass', function() {
     }).on('change', function(path) {
         sassCompiler(cwd + '/scss/main.scss', cwd + '/css/main.css', 'nested', true)
     })
+
+
 });
 
 // compressed CSS
