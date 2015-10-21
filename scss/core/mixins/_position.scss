@@ -9,7 +9,7 @@
 //
 //  Parameter:
 //
-//  @param: {list} $coordinates: background-color
+//  @param: {list} $coordinates: see examples
 //  @param: {property} $position: position styles
 //  @param: {value} $z-index: try z-index variables @variables.scss not values for better structure
 //
@@ -19,6 +19,7 @@
 //
 //  Examples:
 //
+//  @include position(10px n n 10px); // absolute position, top: 10px; right and bottom is ignored, left: 10px
 //  @include position(0 0 0 0, fixed); // fixed position, full height and width
 //  @include position(center); // vertical and horizontal position
 //  @include position(center right); // horizontal position, but on the right (also works with left)
