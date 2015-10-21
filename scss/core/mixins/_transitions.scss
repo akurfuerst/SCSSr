@@ -78,6 +78,6 @@
 
 @mixin tn($property: all, $duration: 0.3s, $delay: 0s, $function: linear){
 
-    @include transition($property: all, $duration: 0.3s, $delay: 0s, $function: linear);
+    @include transition($property, $duration, $delay, $function);
 
 }
