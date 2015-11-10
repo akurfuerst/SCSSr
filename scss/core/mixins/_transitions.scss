@@ -26,7 +26,7 @@
 //  ------------------------------------------------
 
 
-@mixin transition($property: all, $duration: .3s, $delay: 0s, $function: linear){
+@mixin transition($property: all, $duration: .3s, $delay: 0s, $function: ease){
 
     @if (type-of($property) == list) {
 

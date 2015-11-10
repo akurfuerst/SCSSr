@@ -9,9 +9,9 @@
 //
 //  Usage:
 //
-//  @extend %is--left // element floats left
-//  @extend %is--center // center element
-//  @extend %is--right // element floats right
+//  @extend %pull--left // element floats left
+//  @extend %pull--center // center element
+//  @extend %pull--right // element floats right
 //
 //  @extend %align--left // align left
 //  @extend %align--center // align center
@@ -19,7 +19,7 @@
 //
 //  ------------------------------------------------
 
-%is--{
+%pull--{
 
     &center {
         display: block;
@@ -60,9 +60,9 @@
 //
 //  helper classes
 //
-//  class="is--center" // element floats left
-//  class="is--right" // center element
-//  class="is--left" // element floats right
+//  class="pull--center" // element floats left
+//  class="pull--right" // center element
+//  class="pull--left" // element floats right
 //
 //  class="align--center" // center element
 //  class="align--right" // element positions right
@@ -72,18 +72,18 @@
 
 @if ($has-alignment) {
 
-    .is--{
+    .pull--{
 
         &left {
-            @extend %is--left;
+            @extend %pull--left;
         }
 
         &center {
-            @extend %is--center;
+            @extend %pull--center;
         }
 
         &right {
-            @extend %is--right;
+            @extend %pull--right;
         }
 
     }
