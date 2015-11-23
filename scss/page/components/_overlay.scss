@@ -1,0 +1,55 @@
+//  ================================================
+//  Overlay
+//  ================================================
+
+@if ($has--overlay) {
+
+    .overlay {
+        @include rgba(#000, 0.5);
+        @include position(0 0 0 0, fixed);
+        @include tn((opacity, visibility), (.3s, 0s), (0s, .3s));
+        z-index: $z10;
+        visibility: hidden;
+        opacity: 0;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+
+        //vertical center
+        &:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -0.25em;
+        }
+
+        &.is--open {
+            @include tn(opacity, .3s);
+            visibility: visible;
+            opacity: 1;
+        }
+
+        &__{
+            &content {
+                @include tn(opacity, .3s);
+                background: #fff;
+                padding: 20px;
+                opacity: 0;
+                width: 50%;
+                margin: 0 auto;
+                display: inline-block;
+                vertical-align: middle;
+                text-align: left;
+
+                &.is--active {
+                    opacity: 1;
+                }
+            }
+
+            &close {
+
+            }
+        }
+    }
+}

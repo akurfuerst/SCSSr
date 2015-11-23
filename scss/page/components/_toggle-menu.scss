@@ -1,0 +1,82 @@
+//  ================================================
+//  Toggle Menu
+//
+//
+//  html output:
+//  --------------------
+//
+//  <span class="toggle-menu is--active">
+//      <span class="toggle-menu__burger"></span>
+//  </span>
+//
+//  ================================================
+
+.toggle-menu {
+    padding: 15px 10px;
+    cursor: pointer;
+    user-select: none;
+    @include pos(10px 0 n n, $z: $z8);
+    line-height: 0;
+    font-size: 0;
+    display: inline-block;
+
+    @include mobile {
+        top: 20px;
+        left: 20px;
+    }
+
+    &__{
+        &burger {
+            @include tn(background, .3s, 0s, ease);
+            background: transparent;
+            display: inline-block;
+            width: 35px;
+            height: 3px;
+            background: #000;
+            position: relative;
+
+            &:before, &:after {
+                content: '';
+                display: inline-block;
+                width: 35px;
+                height: 3px;
+                background: #000;
+                position: absolute;
+                left: 0;
+                @include tn((top, transform, background), .3s, (.6s, 0s, 0s), ease);
+            }
+
+            &:before {
+                top: 7px;
+            }
+
+            &:after {
+                top: -7px;
+            }
+        }
+    }
+
+    &.is--active {
+
+        .toggle-menu__burger {
+            @include tn(background, .3s, 0s, ease);
+            background: transparent;
+
+            &:before, &:after {
+                @include tn((top, transform), .3s, (0s, .5s), ease);
+                top: 0;
+                width: 35px;
+                transform-origin: 50% 50%;
+            }
+
+            &:before {
+                transform: rotate3d(0, 0, 1, 45deg)
+            }
+
+            &:after {
+                transform: rotate3d(0, 0, 1, -45deg)
+            }
+        }
+    }
+
+}

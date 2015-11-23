@@ -30,7 +30,7 @@
     background: {
         @if $color != null { color: $color; }
         image: url(../img/#{$src});
-        @if $pos != null { position: $pos; }
+        @if $position != null { position: $position; }
         @if $size != null { size: $size; }
         repeat: $repeat;
     }
@@ -44,6 +44,6 @@
 
 @mixin bg($src, $repeat: no-repeat, $pos: null, $col: null, $size: null) {
 
-    @include background($src, $repeat, $position, $col, $size);
+    @include background($src, $repeat, $pos, $col, $size);
 
 }

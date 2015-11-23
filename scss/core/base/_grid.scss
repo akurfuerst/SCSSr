@@ -2,21 +2,7 @@
 //  Grid
 //  ================================================
 
-@if ($has-grid) {
-
-    $spacing: 15px; // gap width / 2, e.g. 30px gap is 15px $spacing
-
-    $elements: article, li, div;
-
-    $columns: (
-    //  size    d-       t-   m-
-        "1-2"   50       50   100,
-        "1-3"   33.333   50   100,
-        "2-3"   66.667   50   100,
-        "1-4"   25       50   100,
-        "3-4"   75       50   100,
-    );
-
+@if ($has--grid) {
 
     @function prefixSelector($prefix, $column){
         // e.g. .d-1-3
@@ -27,7 +13,7 @@
         $selector: ();
         $selector: $selector, prefixSelector('col', $column);
 
-        @each $element in $elements {
+        @each $element in $grid__elements {
             // e.g. .d-1-3 > article
             $selector: $selector, prefixSelector($prefix, $column) unquote('> #{$element}');
         }
@@ -38,8 +24,7 @@
     .grid {
         padding-left: 0;
         padding-right: 0;
-        margin-left: -#{$spacing};
-        margin-right: -#{$spacing};
+        margin: 0 -#{$grid__spacing};
         list-style: none;
         overflow: hidden;
         position: relative;
@@ -51,8 +36,8 @@
             margin-right: 0;
 
             &[class^="m-"], &[class*=" m-"] {
-                margin-left: -#{$spacing};
-                margin-right: -#{$spacing};
+                margin-left: -#{$grid__spacing};
+                margin-right: -#{$grid__spacing};
             }
         }
 
@@ -64,7 +49,7 @@
         }
 
         $selector: ();
-        @each $element in $elements {
+        @each $element in $grid__elements {
             $selector: $selector, unquote('> #{$element}');
         }
 
@@ -76,7 +61,7 @@
             margin-right: 0;
             position: relative;
             float: left;
-            padding: 0 $spacing;
+            padding: 0 $grid__spacing;
 
             @include mobile {
                 padding-left: 0;
@@ -87,8 +72,8 @@
         @include mobile {
             &[class^="m-"], &[class*=" m-"] {
                 #{$selector} {
-                    padding-left: $spacing;
-                    padding-right: $spacing;
+                    padding-left: $grid__spacing;
+                    padding-right: $grid__spacing;
                 }
             }
         }
@@ -96,7 +81,7 @@
     }
 
     // Desktop d- styles with responsive steps
-    @each $column in $columns{
+    @each $column in $grid__columns{
 
         #{setSelectors('d', $column)} {
             width: unquote('#{nth($column, 2)}%');
@@ -112,7 +97,7 @@
                 // if same value = inherited, so doesn't need here
                 @if (nth($column, 3) != nth($column, 4)) {
                     width: unquote('#{nth($column, 4)}%');
-                    margin-bottom: $spacing;
+                    margin-bottom: $grid__spacing;
                 }
             }
         }
@@ -120,7 +105,7 @@
 
     // Tablet t- styles
     @include tablet {
-        @each $column in $columns{
+        @each $column in $grid__columns{
             #{setSelectors('t', $column)} {
                 width: unquote('#{nth($column, 2)}%');
             }
@@ -129,10 +114,10 @@
 
     // Mobile m- styles
     @include mobile {
-        @each $column in $columns{
+        @each $column in $grid__columns{
             #{setSelectors('m', $column)} {
                 width: unquote('#{nth($column, 2)}%');
-                margin-bottom: $spacing;
+                margin-bottom: $grid__spacing;
             }
         }
     }

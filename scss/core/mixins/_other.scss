@@ -1,0 +1,33 @@
+//  ================================================
+//  Other Mixins
+//  ================================================
+
+
+//  ------------------------------------------------
+//
+//  mixin: circle
+//
+//  Parameter:
+//
+//  @param: {property} $color: background-color
+//  @param: {value} $style: 0 - 1
+//
+//
+//  ------------------------------------------------
+//
+//
+//  Examples:
+//
+//  @include circle(30px); // circle with 30px width and height, no border
+//  @include circle(30px); // circle with 30px width and height, no border
+//
+//
+//  ------------------------------------------------
+
+@mixin circle($value, $border: null) {
+    width: $value;
+    height: $value;
+    display: inline-block;
+    @if $border != null { border: $border; }
+    border-radius: 100%;
+}

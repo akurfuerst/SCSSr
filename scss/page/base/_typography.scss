@@ -1,26 +1,60 @@
 //  ================================================
-//  Imports
+//  Typography
 //  ================================================
 
-//  ------------------------------------------------
-//  Base Stuff
-//  ------------------------------------------------
-
-@import 'base/_general';
-@import 'base/_typography';
-
 
 //  ------------------------------------------------
-//  Components
+//  Font-face
 //  ------------------------------------------------
 
-@import 'components/_overlay';
-@import 'components/_toggle-menu';
+//@include font-face(Avenir, 'avenir-light', $weight: 100);
+
+
+
+/*
+    Information: only general font-styles
+*/
+
+//  ------------------------------------------------
+//  Body
+//  ------------------------------------------------
+
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    color: $body;
+}
 
 
 //  ------------------------------------------------
-//  Modules
+//  Headlines
 //  ------------------------------------------------
 
-@import 'modules/_header';
-@import 'modules/_footer';
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+h1, .primary-title {
+
+}
+
+h2 {
+
+}
+
+h3 {
+
+}
+
+h4 {
+
+}
+
+h5 {
+
+}
+
+h6 {
+
+}

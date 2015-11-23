@@ -9,14 +9,49 @@
 
 // alignment classes needed? (e.g. is--left, is--center)
 // @ core/helper/_alignment.scss
-$has-alignment: true;
+$has--alignment: true;
 
 // grid needed? (.grid)
-// @ page/base/_grid.scss
-$has-grid: true;
+// @ core/base/_grid.scss
+$has--grid: true;
+
+// overlay needed? (.grid)
+// @ page/components/_overlay.scss
+$has--overlay: true;
+
+// visual classes needed? (e.g. .visuallyhidden, visible--mobile, hidden--desktop, etc.)
+// @ core/helper/_visually.scss
+$has--visible-hidden: true;
 
 //  ------------------------------------------------
-//  Setup
+//  Colors
+//  ------------------------------------------------
+
+$body: #777;
+$highlight: #259ca7;
+
+
+//  ------------------------------------------------
+//  Grid
+//  ------------------------------------------------
+
+@if ($has--grid) {
+    $grid__spacing: 15px; // gap width / 2, e.g. 30px gap is 15px $grid__spacing
+
+    $grid__elements: article, li, div;
+
+    $grid__columns: (
+    //  size    d-       t-   m-
+        "1-2"   50       50   100,
+        "1-3"   33.333   50   100,
+        "2-3"   66.667   50   100,
+        "1-4"   25       50   100,
+        "3-4"   75       50   100,
+    );
+}
+
+//  ------------------------------------------------
+//  Media queries
 //  ------------------------------------------------
 
 // Media queries
@@ -25,6 +60,10 @@ $mq-mobile: 700;
 $mq-tablet: 900;
 $mq-desktop: 1210;
 
+
+//  ------------------------------------------------
+//  Containers
+//  ------------------------------------------------
 
 // all Container width
 $container-width: (

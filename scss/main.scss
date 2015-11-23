@@ -9,14 +9,10 @@
 //  Setup
 @import 'setup.scss';
 
+//  SCSSr Core
+@import 'core/init.scss';
 
-//  Mixins
-@import 'core/mixins/init.scss';
-
-// Helper
-@import 'core/helper/init.scss';
-
-//  page
+//  Page Styles
 @import 'page/init.scss';
 
 
