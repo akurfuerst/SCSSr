@@ -1,18 +1,16 @@
 # SCSSr
 **awesome scss boilerplate**
 
+##### 1. Install nodejs:
 
-##### 1. Install gulp globally:
+Please install [nodejs](https://nodejs.org/en/) first.
 
-```sh
-$ npm install --global gulp
-```
-
-##### 2. Install gulp in your project devDependencies:
+##### 2. Install gulp globally:
 
 ```sh
-$ npm install --save-dev gulp
+$ sudo npm install gulp -g
 ```
+
 
 ##### 3. Have fun!
 
