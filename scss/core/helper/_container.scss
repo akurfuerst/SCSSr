@@ -75,6 +75,7 @@
 
 .container, [class^="container--"], [class*=" container--"] {
     @extend %pull--center;
+    position: relative;
     width: map-get($container-width, "desktop");
 
     // get default map
