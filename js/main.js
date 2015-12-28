@@ -16,7 +16,7 @@ var Overlay = function() {
         $('.has--overlay').click(function(e){
             e.preventDefault();
 
-            open($(this).attr('href'));
+            open($(this));
         });
 
         //click on overlay, not the content > close overlay
@@ -44,18 +44,24 @@ var Overlay = function() {
 
     var open = function(link) {
 
-        $(link).addClass('is--active');
+        $(link.attr('href')).addClass('is--active');
 
         main.addClass('is--open');
 
-        if ($(link).find('iframe').length) {
-            $(link).find('iframe').attr('src', $(link).find('iframe').attr('data-src'));
+        if ($(content).find('iframe').length) {
+
+            $(content).find('iframe').attr('src', $(link).attr('data-src'));
         }
     };
 
     var close = function() {
         main.removeClass('is--open');
         content.removeClass('is--active');
+
+        if ($(content).find('iframe').length) {
+
+            $(content).find('iframe').attr('src', '');
+        }
     };
 
     init();
