@@ -6,13 +6,13 @@ var gulp = require('gulp');
 
 var livereload = require('gulp-livereload')
 var notify = require("gulp-notify")
-var autoprefixer = require('autoprefixer-core')
+var autoprefixer = require('autoprefixer')
 var combineMq = require('gulp-combine-mq')
 var nodeSass = require('node-sass');
 var fs = require('fs')
 var chokidar = require('chokidar')
 var postcss   = require('postcss');
-var processor = postcss([require('autoprefixer-core')({ browsers: ['last 6 versions', 'ie 9', 'android 4'] })]);
+var processor = postcss([require('autoprefixer')({ browsers: ['last 6 versions', 'ie 9', 'android 4'] })]);
 var iconfont = require('gulp-iconfont');
 var iconfontCss = require('gulp-iconfont-css');
 
@@ -111,16 +111,23 @@ gulp.task('combine-media-queries', ['production-sass'], function () {
 
 var sassCompiler = function(input, output, outputStyle, hasSourcemap) {
 
-    var result = nodeSass.render({
+    nodeSass.render({
         file: input,
         outputStyle: outputStyle,
         outFile: output,
         sourceComments: hasSourcemap,
         sourceMapEmbed: hasSourcemap,
         sourceMapContents: hasSourcemap,
-        sourceMap: hasSourcemap, // or an absolute or relative (to outFile) path
-        success: function(result) {
+        sourceMap: hasSourcemap,
+    }, function(err, result) {
+        if (err) {
+            console.log("SASS: \n");
+            console.log(err)
+            console.log("\n");
 
+            return notify().write(err.message);
+
+        } else {
             notify().write('SCSS compiled in ' + result.stats.duration + 'ms');
 
             processor
@@ -130,15 +137,7 @@ var sassCompiler = function(input, output, outputStyle, hasSourcemap) {
                         livereload.changed('/css/main.css')
                     });
                 });
-
-        },
-        error: function(error) {
-            console.log("SASS: \n");
-            console.log(error)
-            console.log("\n");
-
-            return notify().write(error.message);
-        },
+        }
     });
 
 }
