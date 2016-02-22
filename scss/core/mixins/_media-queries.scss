@@ -29,6 +29,8 @@
 
 @mixin mq($min: n, $max: n) {
 
+    $query: null;
+
     @if ((type-of($min) == number) and (type-of($max) == number)) {
         $query: "(min-width: #{$min}px) and (max-width: #{$max}px)";
     } @elseif (type-of($min) == number) {
@@ -77,6 +79,22 @@
 @mixin gt-mobile {
 
     @include mq($min: $mq-mobile+1) {
+        @content;
+    }
+
+}
+
+@mixin tablet-portrait {
+
+    @include mq($max: $mq-tablet-portrait) {
+        @content;
+    }
+
+}
+
+@mixin gt-tablet-portrait {
+
+    @include mq($min: $mq-tablet-portrait+1) {
         @content;
     }
 
