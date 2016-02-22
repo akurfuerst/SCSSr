@@ -53,42 +53,110 @@
 //  ------------------------------------------------
 //  visible/hidden classes for responsive
 //  ------------------------------------------------
+//
+//  Usage:
+//  --------------------
+//
+//  <div class="visible--mobile">only visible on mobile</div> // only visible between $mq-mini+1 and $mq-mobile
+//  <div class="visible--mobile visible--mini">only visible on mobile</div> // only visible max-width $mq-mobile
+//  <div class="hide--mobile">hide on mobile</div> // only hides between $mq-mini+1 and $mq-mobile
+//
+//  ------------------------------------------------
+
+
+@mixin responsive-visibility($parent) {
+    #{$parent} {
+        display: block !important;
+    }
+
+    table#{$parent}  { display: table !important; }
+    tr#{$parent}     { display: table-row !important; }
+    th#{$parent},
+    td#{$parent}     { display: table-cell !important; }
+}
 
 @if ($has--visible-hidden) {
 
-    .hidden--desktop,
+    //  ------------------------------------------------
+    //  visible classes
+    //  ------------------------------------------------
+
+    .visible--desktop,
+    .visible--tablet,
+    .visible--tablet-portrait,
     .visible--mobile,
-    .visible--tablet {
-        display: none!important;
+    .visible--mini {
+        display: none !important;
     }
 
-    .visible--desktop { display: block!important }
+    // only visible on desktop
+    @include gt-tablet {
+        @include responsive-visibility('.visible--desktop');
+    }
 
-    @include tablet {
-        .hidden--tablet,
-        .visible--desktop,
-        .visible--mobile {
-            display: none!important
-        }
+    // only visible on tablet landscape
+    @include mq($mq-tablet-portrait+1, $mq-tablet) {
+        @include responsive-visibility('.visible--tablet');
+    }
 
-        .visible--tablet,
+    // only visible on tablet
+    @include mq($mq-mobile+1, $mq-tablet-portrait) {
+        @include responsive-visibility('.visible--tablet-portrait');
+    }
+
+    // only visible on mobile
+    @include mq($mq-mini+1, $mq-mobile) {
+        @include responsive-visibility('.visible--mobile');
+    }
+
+    // only visible on mini
+    @include mini {
+        @include responsive-visibility('.visible--mini');
+    }
+
+
+    //  ------------------------------------------------
+    //  hidden classes
+    //  ------------------------------------------------
+
+    @include responsive-visibility('.hidden--desktop');
+    @include responsive-visibility('.hidden--tablet');
+    @include responsive-visibility('.hidden--tablet-portrait');
+    @include responsive-visibility('.hidden--mobile');
+    @include responsive-visibility('.hidden--mini');
+
+    // only hidden on desktop
+    @include gt-tablet {
         .hidden--desktop {
-            display: block!important
+            display: none !important;
         }
     }
 
-    @include mobile {
-        .hidden--mobile,
-        .visible--desktop,
-        .visible--tablet {
-            display: none!important
-        }
-
-        .visible--mobile,
-        .hidden--desktop,
+    // only hidden on tablet landscape
+    @include mq($mq-tablet-portrait+1, $mq-tablet) {
         .hidden--tablet {
-            display: block!important
+            display: none !important;
         }
     }
 
+    // only hidden on tablet
+    @include mq($mq-mobile+1, $mq-tablet-portrait) {
+        .hidden--tablet-portrait {
+            display: none !important;
+        }
+    }
+
+    // only hidden on mobile
+    @include mq($mq-mini+1, $mq-mobile) {
+        .hidden--mobile {
+            display: none !important;
+        }
+    }
+
+    // only hidden on mini
+    @include mini {
+        .hidden--mini {
+            display: none !important;
+        }
+    }
 }
