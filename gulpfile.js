@@ -12,11 +12,14 @@ var nodeSass = require('node-sass');
 var fs = require('fs')
 var chokidar = require('chokidar')
 var postcss   = require('postcss');
-var processor = postcss([require('autoprefixer')({ browsers: ['last 6 versions', 'ie 9', 'android 4'] })]);
+var processor = postcss([require('autoprefixer')({ browsers: ['> 1%', 'last 2 versions', 'ie 9', 'android 4', 'Firefox ESR', 'Opera 12.1'] })]);
 var iconfont = require('gulp-iconfont');
 var iconfontCss = require('gulp-iconfont-css');
+var consolidate = require('gulp-consolidate');
 
-var iconfont = require('gulp-iconfont');
+//debug for browser support
+//var info = autoprefixer({ browsers: ['> 1%', 'last 2 versions', 'ie 9', 'android 4', 'Firefox ESR', 'Opera 12.1'] }).info();
+//console.log(info);
 
 
 var runTimestamp = Math.round(Date.now()/1000);
@@ -32,7 +35,8 @@ gulp.task('default', [
 
 
 gulp.task('font', [
-    'icon-font'
+    'icon-font',
+    'sass'
 ]);
 
 
@@ -49,19 +53,23 @@ gulp.task('production', [
 var fontName = 'icons';
 
 gulp.task('icon-font', function(){
-  gulp.src(['img/icons/*.svg'])
-    .pipe(iconfontCss({
-        fontName: fontName,
-        normalize: true,
-        path: 'scss/templates/icon-font.css',
-        targetPath: '../../scss/general/_icons.scss',
-        fontPath: 'css/webfonts/',
-        className: 'font'
-    }))
-    .pipe(iconfont({
-        fontName: fontName
-    }))
-    .pipe(gulp.dest('css/webfonts/'));
+
+    gulp.src(['img/icons/*.svg'])
+        .pipe(iconfontCss({
+            fontName: fontName,
+            normalize: true,
+            path: 'scss/core/templates/icon-font.css',
+            targetPath: '../../scss/page/base/_icons.scss',
+            fontPath: 'css/webfonts/',
+            className: 'font',
+        }))
+        .pipe(iconfont({
+            fontName: fontName,
+            /* normalize and fontHeight only if svgs height < 500px */
+            normalize: true,
+            fontHeight: 1001
+        }))
+        .pipe(gulp.dest('css/fonts/'));
 });
 
 
